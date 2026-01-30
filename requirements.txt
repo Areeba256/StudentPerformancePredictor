@@ -1,7 +1,8 @@
 pandas 
 numpy 
 seaborn
+matplotlib
+scikit-learn
 
 
-
--e .   #triggers setup.py file
+#-e .   #triggers setup.py file
