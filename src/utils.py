@@ -2,6 +2,9 @@
 import os
 import sys
 import pickle
+from tabnanny import verbose
+
+from sklearn.model_selection import GridSearchCV
 from src.exceptions import CustomException
 import numpy as np
 import pandas as pd
@@ -21,7 +24,7 @@ def save_object(file_path, obj):
     except Exception as e:
         raise CustomException(e, sys)
 
-def evaluate_models(X_train, y_train, X_test, y_test, models):
+def evaluate_models(X_train, y_train, X_test, y_test, models, params):
     '''
     X_train: training features
     y_train: training labels
@@ -33,6 +36,10 @@ def evaluate_models(X_train, y_train, X_test, y_test, models):
         model_report = {}
         for i in range(len(models)):
             model = list(models.values())[i]
+            param = params[list(models.keys())[i]]
+            gs=GridSearchCV(model, param, cv=3, verbose=True) #performs hyperparameter tuning using grid search
+            gs.fit(X_train, y_train)
+            model.set_params(**gs.best_params_) #sets the best parameters found by grid search
             model.fit(X_train, y_train) #training the model
             y_test_pred = model.predict(X_test) #predicting on test data
             test_model_score = r2_score(y_test, y_test_pred) #calculating r2 score
