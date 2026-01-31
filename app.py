@@ -30,7 +30,7 @@ def predict_datapoint():
         print(pred_df)
         predict_pipeline=PredictPipeline()
         results=predict_pipeline.predict(pred_df) #does the prediction
-        return render_template('home.html', results=results[0]) #sends the result to the html file
+        return render_template('home.html', results=round(results[0], 2)) #sends the result to the html file
 if __name__=="__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
     #runs the flask app on the local server
