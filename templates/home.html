@@ -12,7 +12,7 @@
       }
 
       body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         min-height: 100vh;
         display: flex;
@@ -83,7 +83,9 @@
         font-size: 16px;
         font-weight: 600;
         cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
       }
 
       .btn-primary:hover {
@@ -103,7 +105,10 @@
         color: white;
         border-radius: 10px;
         font-size: 24px;
-        display: {{ 'block' if results else 'none' }};
+      }
+
+      .hidden {
+        display: none;
       }
 
       select.form-control {
